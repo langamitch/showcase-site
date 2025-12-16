@@ -12,7 +12,7 @@ export default function ResponsiveGrid({ sites }: ResponsiveGridProps) {
       {sites.map((site) => (
         <SiteCard
           key={site.id}
-          imageSrc={site.thumbnail}
+          imageSrc={site.thumbnail || ""} // Pass an empty string or a fallback URL
           title={site.title}
           description={site.description || ""}
           gsapUsed={site.gsap_used}

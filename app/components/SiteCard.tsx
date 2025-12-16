@@ -1,6 +1,5 @@
 // components/SiteCard.tsx
 import Image from "next/image";
-import { Site } from "../../types/supabase";
 
 interface SiteCardProps {
   imageSrc: string;
@@ -17,13 +16,19 @@ export default function SiteCard({
   description,
   gsapUsed,
   url,
-  tags,
+  tags = [],
 }: SiteCardProps) {
   return (
     <div className="rounded-lg overflow-hidden shadow-lg">
       <a href={url} target="_blank" rel="noopener noreferrer">
-        <div className="relative aspect-square">
-          <Image src={imageSrc} alt={title} fill className="object-cover" />
+        <div className="relative aspect-square bg-gray-200 dark:bg-gray-700">
+          {imageSrc ? (
+            <Image src={imageSrc} alt={title} fill className="object-cover" />
+          ) : (
+            <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
+              No Image
+            </div>
+          )}
         </div>
       </a>
       <div className="p-4 bg-white dark:bg-gray-800">
@@ -43,7 +48,7 @@ export default function SiteCard({
           )}
         </div>
         <p className="text-gray-600 dark:text-gray-400">{description}</p>
-        {tags.length > 0 && (
+        {tags && tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-2">
             {tags.map((tag, index) => (
               <span
