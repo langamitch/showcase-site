@@ -1,14 +1,14 @@
 // types/supabase.ts
 export interface Site {
-  id: string; // UUID is represented as a string in TypeScript
+  id: string;
   title: string;
   url: string;
-  description: string | null; // Since `description` can be NULL in SQL
+  description: string | null;
   thumbnail: string;
-  tags: string[]; // ARRAY in Supabase is represented as an array in TypeScript
+  tags: string[]; // Ensure tags is always an array
   gsap_used: boolean;
   social_link: string | null;
   video_url: string | null;
-  status: "pending" | "approved" | "rejected"; // Adjust based on your actual status values
-  created_at: string; // ISO timestamp string
+  status: "pending" | "approved" | "rejected";
+  created_at: string;
 }

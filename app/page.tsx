@@ -1,4 +1,5 @@
 // pages/index.tsx
+'use client';
 import { useState, useEffect } from "react";
 import ResponsiveGrid from "./components/ResponsiveGrid";
 import { supabase } from "../lib/supabaseClient";

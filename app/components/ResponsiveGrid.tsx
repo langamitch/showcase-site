@@ -17,7 +17,7 @@ export default function ResponsiveGrid({ sites }: ResponsiveGridProps) {
           description={site.description || ""}
           gsapUsed={site.gsap_used}
           url={site.url}
-          tags={site.tags}
+          tags={site.tags || []}
         />
       ))}
     </div>

@@ -28,7 +28,14 @@ export default function SiteCard({
       </a>
       <div className="p-4 bg-white dark:bg-gray-800">
         <div className="flex items-center gap-2">
-          <span className="text-lg font-semibold">{title}</span>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-lg font-semibold hover:underline"
+          >
+            {title}
+          </a>
           {gsapUsed && (
             <span className="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-1 rounded">
               GSAP
