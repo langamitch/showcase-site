@@ -3,24 +3,51 @@
 :root {
   --background: #E9E8E3;
   --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* These will be set by next/font variables */
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-mono: var(--font-geist-mono);}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+      --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   }
 }
+
+/* globals.css */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e40909; /* Color of the scrollbar thumb */
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
+}
+
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Helvetica, sans-serif;
+}
+
+.muted {
+  color: #787878;
+}
+.dark .muted {
+  color: #a3a3a3;
 }
