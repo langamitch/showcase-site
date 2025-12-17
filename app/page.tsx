@@ -1,12 +1,31 @@
 // pages/index.tsx
-'use client';
-import { useState, useEffect } from "react";
-import ResponsiveGrid from "./components/ResponsiveGrid";
+"use client";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import Scrollbar from "./components/scrollbar";
+import CardGrid from "./components/CardGrid";
+import Overlay from "./components/Overlay";
 import { supabase } from "../lib/supabaseClient";
 import { Site } from "../types/supabase";
 
 export default function Home() {
   const [sites, setSites] = useState<Site[]>([]);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const handleCardClick = (index: number) => {
+    setActiveCard(index);
+  };
+
+  const handleCloseOverlay = () => {
+    gsap.to(overlayRef.current, {
+      clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
+      duration: 0.9,
+      ease: "power2.in",
+      onComplete: () => setActiveCard(null),
+    });
+  };
 
   useEffect(() => {
     const fetchSites = async () => {
@@ -26,8 +45,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <ResponsiveGrid sites={sites} />
-    </div>
+    <>
+      <CardGrid onCardClick={handleCardClick} />
+      <Overlay
+        activeCard={activeCard}
+        onClose={handleCloseOverlay}
+        overlayRef={overlayRef}
+        contentRef={contentRef}
+      />
+    </>
   );
 }
